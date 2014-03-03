@@ -33,14 +33,6 @@ if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Version in readme.txt & $MAI
 
 echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
 
-if git show-ref --tags --quiet --verify -- "refs/tags/$NEWVERSION1"
-	then 
-		echo "Version $NEWVERSION1 already exists as git tag. Exiting...."; 
-		exit 1; 
-	else
-		echo "Git version does not exist. Let's proceed..."
-fi
-
 cd $GITPATH
 echo -e "Enter a commit message for this new version: \c"
 read COMMITMSG
@@ -78,6 +70,15 @@ svn commit --username=$SVNUSER -m "$COMMITMSG"
 echo -n "Do you want to create tag in svn? [yes/no] "
 read dotag
 if [ "$dotag" = "yes" ]; then
+  
+  if git show-ref --tags --quiet --verify -- "refs/tags/$NEWVERSION1"
+  	then 
+  		echo "Version $NEWVERSION1 already exists as git tag. Exiting...."; 
+  		exit 1; 
+  	else
+  		echo "Git version does not exist. Let's proceed..."
+  fi
+  
   echo "Creating new SVN tag & committing it"
   cd $SVNPATH
   svn copy trunk/ tags/$NEWVERSION1/
