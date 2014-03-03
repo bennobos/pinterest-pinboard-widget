@@ -50,3 +50,11 @@ Some examples of the shortcode uses are below. Retrieve 9 pins for user pinteres
 Retrieve 30 pins for user pinterest and open links in a new window:
 
 `[pinterest_pinboard username="pinterest" rows=3 cols=10 new_window=1]`
+
+## Screenshots
+
+1. Settings of the widget under: Appearance > Widgets !
+[widget settings](https://github.com/codefishnl/wordpress-pinterest-pinboard-widget/blob/master/screenshot-1.jpg)
+
+1. This is the Pinterest Pinboard widget in the sidebar of the Twenty Eleven WordPress theme
+[widget preview](https://github.com/codefishnl/wordpress-pinterest-pinboard-widget/blob/master/screenshot-2.jpg)
