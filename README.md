@@ -36,7 +36,7 @@ The current version show a 'more pins' link only. Future versions of the plugin 
 
 ### I want to add a Pinboard to a page. Is this possible?
 
-Yes, since verson 1.0.5 the plugin support a shortcode `pinterest_pinboard`. The following argument can be supplied:
+Yes, since version 1.0.5 the plugin support a shortcode `pinterest_pinboard`. The following argument can be supplied:
 
 * username: The pinterest username to retrieve the pins for
 * rows: Nr. of rows of pins to display
