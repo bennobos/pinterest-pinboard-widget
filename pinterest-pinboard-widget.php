@@ -120,14 +120,15 @@ class Pinterest_Pinboard {
         if (is_null($rss_items)) {
             $pins = null;
         } else {
+            
+            // Build patterns to search/replace in the image urls.
             // Pattern to replace for the images.
             $search = array('_b.jpg');
             $replace = array('_t.jpg');
-            // Add http replace is running secure.
-            if ($this->is_secure()) {
-                array_push($search, 'http://');
-                array_push($replace, '//');
-            }
+            // Make urls protocol relative
+            array_push($search, 'http://');
+            array_push($replace, '//');
+            
             $pins = array();
             foreach ($rss_items as $item) {
                 $title = $item->get_title();
@@ -165,21 +166,10 @@ class Pinterest_Pinboard {
         $execution_time = (microtime(true) - $this->start_time) * 1e6;
         return '<!-- '.
                'Version: '. $this->get_version() .' // '.
-               'Secure: '. ($this->is_secure() ? 'yes' : 'no') .' // '.
                'Execution Time: '. $execution_time .' (ms) '.
                "-->\n";
     }
     
-    /**
-     * Check if the server is running SSL.
-     */
-    function is_secure() {
-        return true;
-        return !empty($_SERVER['HTTPS'])
-            && $_SERVER['HTTPS'] !== 'off'
-            || $_SERVER['SERVER_PORT'] == 443;
-    } 
-
 }
 
 class Pinterest_Pinboard_Widget extends WP_Widget {
