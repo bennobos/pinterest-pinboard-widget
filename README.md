@@ -53,8 +53,10 @@ Retrieve 30 pins for user pinterest and open links in a new window:
 
 ## Screenshots
 
-1. Settings of the widget under: Appearance > Widgets !
-[widget settings](https://github.com/codefishnl/wordpress-pinterest-pinboard-widget/blob/master/screenshot-1.jpg)
+Settings of the widget under: Appearance > Widgets
 
-1. This is the Pinterest Pinboard widget in the sidebar of the Twenty Eleven WordPress theme
-[widget preview](https://github.com/codefishnl/wordpress-pinterest-pinboard-widget/blob/master/screenshot-2.jpg)
+![settings](https://raw.github.com/codefishnl/wordpress-pinterest-pinboard-widget/master/screenshot-1.jpg)
+
+This is the Pinterest Pinboard widget in the sidebar of the Twenty Eleven WordPress theme
+
+![preview](https://raw.github.com/codefishnl/wordpress-pinterest-pinboard-widget/master/screenshot-2.jpg)
