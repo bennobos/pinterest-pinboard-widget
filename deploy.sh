@@ -15,7 +15,6 @@ SVNPATH="/tmp/$PLUGINSLUG" # path to a temp SVN repo. No trailing slash required
 SVNURL="http://plugins.svn.wordpress.org/pinterest-pinboard-widget/" # Remote SVN repo on wordpress.org
 SVNUSER="codefish" # your svn username
 
-
 # Let's begin...
 echo ".........................................."
 echo 
@@ -33,14 +32,6 @@ echo "$MAINFILE version: $NEWVERSION2"
 if [ "$NEWVERSION1" != "$NEWVERSION2" ]; then echo "Version in readme.txt & $MAINFILE don't match. Exiting...."; exit 1; fi
 
 echo "Versions match in readme.txt and $MAINFILE. Let's proceed..."
-
-if git show-ref --tags --quiet --verify -- "refs/tags/$NEWVERSION1"
-	then 
-		echo "Version $NEWVERSION1 already exists as git tag. Exiting...."; 
-		exit 1; 
-	else
-		echo "Git version does not exist. Let's proceed..."
-fi
 
 cd $GITPATH
 echo -e "Enter a commit message for this new version: \c"
@@ -65,19 +56,38 @@ echo "Ignoring github specific files and deployment script"
 svn propset svn:ignore "deploy.sh
 README.md
 .git
-.gitignore" "$SVNPATH/trunk/"
+.gitignore
+t" "$SVNPATH/trunk/"
 
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
+
 # Add all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
 svn commit --username=$SVNUSER -m "$COMMITMSG"
 
-echo "Creating new SVN tag & committing it"
-cd $SVNPATH
-svn copy trunk/ tags/$NEWVERSION1/
-cd $SVNPATH/tags/$NEWVERSION1
-svn commit --username=$SVNUSER -m "Tagging version $NEWVERSION1"
+# Should we also tag the release?
+echo -n "Do you want to create tag in svn? [yes/no] "
+read dotag
+if [ "$dotag" = "yes" ]; then
+  
+  if git show-ref --tags --quiet --verify -- "refs/tags/$NEWVERSION1"
+  	then 
+  		echo "Version $NEWVERSION1 already exists as git tag. Exiting...."; 
+  		exit 1; 
+  	else
+  		echo "Git version does not exist. Let's proceed..."
+  fi
+  
+  echo "Creating new SVN tag & committing it"
+  cd $SVNPATH
+  svn copy trunk/ tags/$NEWVERSION1/
+  cd $SVNPATH/tags/$NEWVERSION1
+  svn commit --username=$SVNUSER -m "Tagging version $NEWVERSION1"
+else
+  echo "Skipping svn tag."
+fi
+exit
 
 echo "Removing temporary directory $SVNPATH"
 rm -fr $SVNPATH/
