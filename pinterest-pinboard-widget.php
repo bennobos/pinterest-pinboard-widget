@@ -75,7 +75,7 @@ class Pinterest_Pinboard {
                 if ($new_window) {
                     echo(" target=\"_blank\"");
                 }
-                echo("><img src=\"$image\" alt=\"$title\" title=\"$title\" /></a>\n");
+                echo("><img src=\"$image\" alt=\"$title\" title=\"$title\" /></a>");
                 $col++;
                 if ($col >= $cols) {
                     echo("</div>\n");
