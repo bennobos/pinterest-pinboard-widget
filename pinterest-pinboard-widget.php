@@ -6,7 +6,7 @@ Plugin URI: http://wordpress.org/extend/plugins/pinterest-pinboard-widget/
 Description: Add a Pinterest Pinboard widget and shortcode to WordPress.
 Author: CodeFish
 Author URI: http://www.codefish.nl
-Version: 1.0.5
+Version: 1.0.6
 */
 
 /*  Copyright 2012-2014 CodeFish (email: info at codefish.nl)
