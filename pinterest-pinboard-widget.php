@@ -43,7 +43,7 @@ define('PINTEREST_PINBOARD_SHORTCODE', 'pinterest_pinboard');
 class Pinterest_Pinboard {
 
     // Pinterest url
-    var $pinterest_feed_url = 'http://pinterest.com/%s/feed.rss';
+    var $pinterest_feed_url = 'https://pinterest.com/%s/feed.rss';
     
     // RSS cache lifetime in seconds
     var $cache_lifetime = 900;
@@ -124,7 +124,7 @@ class Pinterest_Pinboard {
             $search = array('_b.jpg');
             $replace = array('_t.jpg');
             // Make urls protocol relative
-            array_push($search, 'http://');
+            array_push($search, 'https://');
             array_push($replace, '//');
             
             $pins = array();
